@@ -1,18 +1,31 @@
-// 20-dars Asyncronus 
-count = 0;
-
-function countLetter(a, b) {
-    for (let i = 0; i < b.length; i++) {
-        if (b[i] === a) {
+function countDigits(text) {
+    let count = 0;
+    for (let i = 0; i < text.length; i++) {
+        if (!isNaN(text[i]) && text[i] !== ' ') {
             count++;
         }
     }
     return count;
 }
-// let newWord = (countLetter("e", "Hello, my name is Bob. I am 25 years old. I am a student"));
-// console.log(newWord);
-let engeener = countLetter('e', "engineer");
-console.log(engeener);
+
+console.log(countDigits("Hello, my name is Bob. I am 25 years old. I am a student"));
+console.log(countDigits("sdj234jf4a e1f3"));
+
+// // 20-dars Asyncronus 
+// count = 0;
+
+// function countLetter(a, b) {
+//     for (let i = 0; i < b.length; i++) {
+//         if (b[i] === a) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+// // let newWord = (countLetter("e", "Hello, my name is Bob. I am 25 years old. I am a student"));
+// // console.log(newWord);
+// let engeener = countLetter('e', "engineer");
+// console.log(engeener);
 
 
 

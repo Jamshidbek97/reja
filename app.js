@@ -1,5 +1,4 @@
 console.log("web server starting...");
-
 const express = require("express");
 
 const fs = require("fs");
@@ -32,14 +31,38 @@ app.set("view engine", "ejs");
 //4 routing code
 //form in harid has action sending it to /create-item
 app.post("/create-item", (req, res) => {
-  res.json({
-    test: "success"
+  console.log("user entered /create-item");
+  const new_reja = req.body.reja;
+  // console.log(new_reja);
+
+  db.collection("plans").insertOne({
+    reja: new_reja
+  }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.end("some error occured");
+    } else {
+      res.end("data inserted successfully");
+    };
   });
+
 });
 
 ///main page rendering harid.ejs in views
 app.get("/", (req, res) => {
-  res.render("reja");
+  console.log("user entered /");
+
+  db.collection("plans").find().toArray((err, data) => {
+    if (err) {
+      console.log(err);
+      res.end("some error occured");
+    } else {
+      console.log(data);
+      res.render("reja", {
+        items: data
+      });
+    }
+  });
 });
 
 //// author page route
