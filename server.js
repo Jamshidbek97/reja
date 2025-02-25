@@ -1,53 +1,26 @@
-const express = require("express");
 const http = require("http");
-const fs = require("fs");
 
-let user;
-fs.readFile("database/user.json", "utf8", (err, data) => {
-  if (err) {
-    console.log(err);
-  } else {
-    user = JSON.parse(data);
-  }
-});
+const mongodb = require("mongodb");
 
-//app
-const app = express();
-// 1 express kirish code
-app.use(express.static("public"));
-app.use(express.urlencoded({
-  extended: true
-}));
-app.use(express.json());
+let db;
+const connectionString = "mongodb+srv://James:OVUAkdgHTp6RB5YQ@cluster0.q8gos.mongodb.net/Reja?retryWrites=true&w=majority";;
 
-//2 sessions code
-//3 views code
-app.set("views", "./views");
-app.set("view engine", "ejs");
+mongodb.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, (err, client) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("connected to database");
+        module.exports = client;
 
-//4 routing code
-//form in harid has action sending it to /create-item
-app.post("/create-item", (req, res) => {
-  res.json({
-    test: "success"
-  });
-});
 
-///main page rendering harid.ejs in views
-app.get("/", (req, res) => {
-  res.render("reja");
-});
-
-//// author page route
-app.get("/author", (req, res) => {
-  res.render("author", {
-    user: user
-  });
-});
-
-//creating server with https
-let PORT = 3000;
-const server = http.createServer(app);
-server.listen(PORT, () => {
-  console.log(`this app is running in port: ${PORT},n https://localhost:${PORT}`);
+        const app = require("./app");
+        let PORT = 3000;
+        const server = http.createServer(app);
+        server.listen(PORT, () => {
+            console.log(`this app is running in port: ${PORT},n https://localhost:${PORT}`);
+        });
+    }
 });
