@@ -4,6 +4,7 @@ const express = require("express");
 const fs = require("fs");
 const db = require("./server").db();
 // mongodb connection
+const mongodb = require("mongodb");
 
 let user;
 fs.readFile("database/user.json", "utf8", (err, data) => {
@@ -43,6 +44,20 @@ app.post("/create-item", (req, res) => {
       res.json(data.ops[0]);
     });
 });
+
+//delete button in reja has action sending it to /delete-item
+app.post("/delete-item", (req, res) => {
+  console.log("user entered /delete-item");
+  db.collection("plans").deleteOne({
+      _id: new mongodb.ObjectID(req.body.id)
+    },
+    (err, data) => {
+      res.json({
+        state: "success"
+      });
+    });
+});
+
 ///main page rendering harid.ejs in views
 app.get("/", (req, res) => {
   console.log("user entered /");

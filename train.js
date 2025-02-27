@@ -1,15 +1,30 @@
-function countDigits(text) {
-    let count = 0;
-    for (let i = 0; i < text.length; i++) {
-        if (!isNaN(text[i]) && text[i] !== ' ') {
-            count++;
-        }
-    }
-    return count;
+// MIT task C
+function checkContent(a, b) {
+    // mitGroup = gitmoup true,
+    // mitGroup = git24oup false
+    x = a.toLowerCase().split('').sort().join('');
+    y = b.toLowerCase().split('').sort().join('');
+    return x === y;
+
+    // console.log(x, y);
 }
 
-console.log(countDigits("Hello, my name is Bob. I am 25 years old. I am a student"));
-console.log(countDigits("sdj234jf4a e1f3"));
+console.log(checkContent("agitGroup", "gitmoup"))
+console.log(checkContent("James", "SeJam"))
+// true
+// function countDigits(text) {
+//     // Raqamlar sonini aniqlash
+//     let count = 0; 
+//     for (let i = 0; i < text.length; i++) {
+//         if (!isNaN(text[i]) && text[i] !== ' ') {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+// console.log(countDigits("Hello, my name is Bob. I am 25 years old. I am a student"));
+// console.log(countDigits("sdj234jf4a e1f3"));
 
 // // 20-dars Asyncronus 
 // count = 0;
