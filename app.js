@@ -36,18 +36,13 @@ app.post("/create-item", (req, res) => {
   // console.log(new_reja);
 
   db.collection("plans").insertOne({
-    reja: new_reja
-  }, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.end("some error occured");
-    } else {
-      res.end("data inserted successfully");
-    };
-  });
-
+      reja: new_reja
+    },
+    (err, data) => {
+      console.log(data.ops);
+      res.json(data.ops[0]);
+    });
 });
-
 ///main page rendering harid.ejs in views
 app.get("/", (req, res) => {
   console.log("user entered /");
@@ -57,7 +52,7 @@ app.get("/", (req, res) => {
       console.log(err);
       res.end("some error occured");
     } else {
-      console.log(data);
+      // console.log(data);
       res.render("reja", {
         items: data
       });
