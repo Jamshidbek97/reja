@@ -12,9 +12,14 @@
     />
   </head>
   <body style="background-color: #b8bbd1">
-    <div class="container">
-      <h1 class="display-4 text-center py-1">Harid va maqsadlar</h1>
-      <div class="jumbotron p-3 shadow-sm">
+    <div class="container" style="width: 75%">
+      <h1 style="width: 75%" class="display-4 text-center py-1">
+        Purchases and Purposes
+      </h1>
+      <div
+        class="jumbotron p-3 shadow-sm"
+        style="width: 75%; background-color: #cff4fc; border-radius: 5px"
+      >
         <form action="/create-item" id="create-form" method="POST">
           <div class="d-flex align-items-center">
             <input
@@ -24,18 +29,18 @@
               autocomplete="off"
               name="reja"
               class="form-control mr-3"
-              style="flex: 1; margin: 50px"
+              style="flex: 1; margin-right: 3rem"
             />
             <button class="btn btn-primary">Yangi reja Qo'shish</button>
           </div>
         </form>
       </div>
       <ul
-        style="width: 75%; margin-left: 4rem"
+        style="width: 75%; margin-top: 2rem"
         id="item-list"
         class="list-group pb-5"
       >
-        <% items.map((item) => {%>
+        <% if (items.length > 0) { %> <% items.map((item) => {%>
         <li
           class="list-group-item list-group-item-info d-flex align-items-center justify-content-between"
         >
@@ -55,13 +60,12 @@
             </button>
           </div>
         </li>
-        <% })%>
+        <% })%> <% } else { %>
+        <p>No items available</p>
+        <% } %>
       </ul>
 
-      <!-- <%= items[0].reja %> -->
-      <button id="clear-all" class="btn btn-danger" style="margin-left: 4rem">
-        Hamma rejalarni o'chirish
-      </button>
+      <button id="clear-all" class="btn btn-danger">Delete All Items</button>
     </div>
     <script src="/browser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

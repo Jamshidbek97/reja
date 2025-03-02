@@ -58,6 +58,32 @@ app.post("/delete-item", (req, res) => {
     });
 });
 
+app.post("/update-item", (req, res) => {
+  console.log(req.body);
+  db.collection("plans").findOneAndUpdate({
+      _id: new mongodb.ObjectID(req.body.id)
+    }, {
+      $set: {
+        reja: req.body.reja
+      }
+    },
+    () => {
+      res.json({
+        state: "success"
+      });
+    });
+});
+
+app.post("/delete-all", (req, res) => {
+  if (req.body.deleteAll) {
+    db.collection("plans").deleteMany({}, () => {
+      res.json({
+        state: "success"
+      });
+    });
+  }
+});
+
 ///main page rendering harid.ejs in views
 app.get("/", (req, res) => {
   console.log("user entered /");

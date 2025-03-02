@@ -53,9 +53,36 @@ document.addEventListener("click", function (e) {
         console.log("please try again later");
       });
     }
-  } else if (e.target.classList.contains("edit-me")) {
-    alert("you clicked edit button");
   }
+});
 
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("edit-me")) {
+    let userInput = prompt("Enter your desired new text", e.target.parentElement.parentElement.querySelector(".item-text").innerHTML);
+    if (userInput) {
+      axios.post("/update-item", {
+          reja: userInput,
+          id: e.target.getAttribute("data-id")
+        })
+        .then(() => {
+          e.target.parentElement.parentElement.querySelector(".item-text").innerHTML = userInput;
+        })
+        .catch(() => {
+          console.log("please try again later");
+        });
+    }
+  }
+});
 
+document.getElementById("clear-all").addEventListener("click", function () {
+  axios.post("/delete-all", {
+      deleteAll: true
+    })
+    .then((response) => {
+      alert(response.data.state);
+      document.location.reload();
+    })
+    .catch(() => {
+      console.log("please try again later");
+    });
 });
