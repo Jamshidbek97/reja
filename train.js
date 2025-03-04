@@ -15,11 +15,25 @@ class Shop {
     sotish(product, quantity) {
         console.log(`Hozir ${new Date().getHours()}:${new Date().getMinutes()}da ${quantity}ta ${product} sotilgan!`);
         if (product === 'non') {
-            this.bread -= quantity;
+            if (this.bread < quantity) {
+                console.log("Non yetmaydi!");
+
+            } else {
+                this.bread -= quantity;
+            }
+
         } else if (product === 'lagmon') {
-            this.soup -= quantity;
+            if (this.soup < quantity) {
+                console.log("Lagmon yetmaydi!");
+            } else {
+                this.soup -= quantity;
+            }
         } else if (product === 'cola') {
-            this.drinks -= quantity;
+            if (this.drinks < quantity) {
+                console.log("Cola yetmaydi!");
+            } else {
+                this.drinks -= quantity;
+            }
         } else {
             console.log("Bunday mahsulot yo'q!");
         }
@@ -41,6 +55,9 @@ const shop = new Shop(4, 5, 2);
 shop.qoldiq();
 shop.sotish('non', 3);
 shop.qabul('cola', 4);
+shop.qoldiq();
+shop.sotish('non', 3);
+shop.sotish('non', 1);
 shop.qoldiq();
 
 // // MIT task C
