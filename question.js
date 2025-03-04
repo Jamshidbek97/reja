@@ -25,3 +25,17 @@
 
 // res.json({state: "success"}); meaning in Node.js
 // In Node.js, the res.json() method is used to send a JSON response to the client. In this case, the code snippet is sending a JSON object with a key-value pair {state: "success"} as the response. This response indicates that the operation (likely a deletion operation) was successful, and the client can use this information to handle the response accordingly.    
+
+// architectural pattern and design pattern in Node.js
+// Architectural patterns in Node.js refer to high-level structures that provide guidelines and best practices for organizing and designing the components of a Node.js application. Some common architectural patterns used in Node.js applications include:
+// - Model-View-Controller (MVC): Separates the application into three interconnected components (models, views, and controllers) to improve code organization and maintainability.
+// - Microservices: Decomposes the application into smaller, independent services that communicate over a network, enabling scalability and flexibility.
+// - Serverless: Focuses on building applications using serverless computing services, where developers write code without managing servers or infrastructure.
+// Design patterns in Node.js refer to reusable solutions to common software design problems that arise during application development. Some common design patterns used in Node.js applications include:
+// - Singleton: Ensures that a class has only one instance and provides a global point of access to it.
+// - Factory: Creates objects without specifying the exact class of object that will be created.    
+// - Observer: Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+// - Promises: Provides a way to work with asynchronous operations in a more readable and manageable manner.
+
+// What is axios in Node.js?
+// Axios is a popular JavaScript library used for making HTTP requests from Node.js or the browser. It provides a simple and intuitive API for sending and handling HTTP requests, supporting features such as request and response interception, automatic transformation of JSON data, and the ability to cancel requests. Axios is commonly used in Node.js applications for interacting with external APIs, fetching data from servers, and handling AJAX requests.
